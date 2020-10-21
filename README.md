@@ -1,6 +1,6 @@
 # python-project-lvl3
 
-<a href="https://codeclimate.com/github/LyuPo7/python-project-lvl3/maintainability"><img src="https://api.codeclimate.com/v1/badges/0f92f57e0c0e8d70281f/maintainability" /></a> <a href="https://codeclimate.com/github/LyuPo7/python-project-lvl3/test_coverage"><img src="https://api.codeclimate.com/v1/badges/0f92f57e0c0e8d70281f/test_coverage" /></a> <a href="https://travis-ci.org/LyuPo7/python-project-lvl2"><img src="https://travis-ci.org/LyuPo7/python-project-lvl2.svg?branch=master"></a> ![Python package](https://github.com/LyuPo7/python-project-lvl3/workflows/Python%20package/badge.svg)
+<a href="https://codeclimate.com/github/LyuPo7/python-project-lvl3/maintainability"><img src="https://api.codeclimate.com/v1/badges/0f92f57e0c0e8d70281f/maintainability" /></a> <a href="https://codeclimate.com/github/LyuPo7/python-project-lvl3/test_coverage"><img src="https://api.codeclimate.com/v1/badges/0f92f57e0c0e8d70281f/test_coverage" /></a> <a href="https://travis-ci.org/LyuPo7/python-project-lvl3"><img src="https://travis-ci.org/LyuPo7/python-project-lvl3.svg?branch=main"></a> ![Python package](https://github.com/LyuPo7/python-project-lvl3/workflows/Python%20package/badge.svg)
 
 <h3>Project Description:</h3>
     <p>Generate difference utility</p>
