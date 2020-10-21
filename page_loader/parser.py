@@ -13,7 +13,7 @@ def create_parser():
     parser = argparse.ArgumentParser(
         prog='page-loader',
 		description="""Description:
-            The program loads HTML pages.""",
+            The program downloads HTML pages.""",
 		epilog="""(c) October 2020.
             The developer isn't responsible for any problems
             which might result from work of this program.
@@ -23,7 +23,7 @@ def create_parser():
         'page',
         metavar='page',
         type=str,
-        help='page for download',
+        help='HTML page',
     )
     parser.add_argument(
         '-o',
@@ -31,7 +31,7 @@ def create_parser():
         type=str,
         default='./',
         help='output directory',
-        metavar='OUTPUT',
+        metavar='output',
     )
 
     return parser
