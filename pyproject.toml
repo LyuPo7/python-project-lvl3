@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "LyuPo7_page-loader"
-version = "1.0.0"
+version = "3.0.0"
 description = "Page loader"
 authors = ["LyuPo <lport@frtk.ru>"]
 classifiers = [
@@ -15,11 +15,13 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.6"
 requests = "^2.24.0"
+bs4 = "^0.0.1"
+lxml = "^4.6.1"
+
+[tool.poetry.dev-dependencies]
 pytest = "^6.1.1"
 pytest-cov = "^2.10.1"
 flake8 = "^3.8.4"
-
-[tool.poetry.dev-dependencies]
 
 [tool.poetry.scripts]
 page-loader = "page_loader.scripts.page_loader:main"

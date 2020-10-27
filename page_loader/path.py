@@ -15,9 +15,28 @@ def change(char):
     return CHANGE_SYMBOL
 
 
-def create(page, output):
-    path = list(page.split('://')[1])
+def cut(link):
+    domain_regx = re.compile(r'(https:\/\/)(\S*)')
+    domain = domain_regx.search(link)
+    if domain:
+        return domain.group(2)
+    return link
+
+
+def create(page):
+    path = list(cut(page))
     for i in range(len(path)):
         path[i] = change(path[i])
-    path = '{}.html'.format(''.join(path))
-    return os.path.join(output, path)
+    path_page = '{}.html'.format(''.join(path))
+    path_dir = '{}_files'.format(''.join(path))
+    return (path_page, path_dir)
+
+
+def relink(src):
+    path, ext = os.path.splitext(src)
+    path = list(path)
+    for i in range(len(path)):
+        path[i] = change(path[i])
+    if len(path) > 100:
+        path = path[:100]
+    return ''.join(path[1:]) + ext

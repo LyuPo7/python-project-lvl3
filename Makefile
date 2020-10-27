@@ -5,7 +5,7 @@ test:
 	poetry run pytest -vv --ff --cov=page_loader --cov-report xml tests/tests.py 
 
 lint:
-	poetry run flake8 page_loader --show-source --ignore=E131 --verbose
+	poetry run flake8 page_loader --show-source --ignore=E131,E722,E501 --verbose
 
 selfcheck:
 	poetry check
@@ -17,5 +17,8 @@ build: check
 
 publish:
 	poetry publish --repository PyPiTest
+
+run:
+	poetry run python3 -m page_loader.scripts.page_loader --output=/var/tmp https://pythonjobs.github.io
 
 .PHONY: install test lint selfcheck check build
