@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "LyuPo7_page-loader"
-version = "3.0.0"
+version = "4.0.0"
 description = "Page loader"
 authors = ["LyuPo <lport@frtk.ru>"]
 classifiers = [

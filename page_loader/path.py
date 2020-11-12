@@ -9,6 +9,7 @@ CHANGE_SYMBOL = '-'
 
 
 def change(char):
+    """Change char if itsn't valid."""
     char_regx = re.compile(r'[a-zA-Z0-9]')
     if char_regx.search(char):
         return char
@@ -16,6 +17,7 @@ def change(char):
 
 
 def cut(link):
+    """Cut schema from the link."""
     domain_regx = re.compile(r'(https:\/\/)(\S*)')
     domain = domain_regx.search(link)
     if domain:
@@ -24,6 +26,7 @@ def cut(link):
 
 
 def create(page):
+    """Create name for html page and name for directory of sources of html page."""
     path = list(cut(page))
     for i in range(len(path)):
         path[i] = change(path[i])
@@ -33,6 +36,7 @@ def create(page):
 
 
 def relink(src):
+    """Relink source with valid chars."""
     path, ext = os.path.splitext(src)
     path = list(path)
     for i in range(len(path)):

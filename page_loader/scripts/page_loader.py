@@ -2,17 +2,35 @@
 
 """Main file of project."""
 from page_loader import page
+from page_loader import VERBOSITY
 from page_loader.parser import create_parser
 import logging
+import sys
+from page_loader import error
+import traceback
 
 
 def main():
     """Run project."""
-    logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s - %(levelname)s - %(message)s')
-    logging.info('Started')
     parser = create_parser()
     namespace = parser.parse_args()
-    page.download(namespace.page, namespace.output)
+    logging.basicConfig(
+        level=VERBOSITY[namespace.verbosity],
+        format=' %(asctime)s - %(levelname)s - %(message)s',
+    )
+    logging.info('Started')
+    try:
+        page.download(namespace.page, namespace.output)
+    except error.ConnectionError:
+        traceback.print_exc(file=open('./page_loader.log', 'a'))
+        sys.exit(1)
+    except error.PathError:
+        traceback.print_exc(file=open('./page_loader.log', 'a'))
+        sys.exit(1)
+    except error.RequestError:
+        traceback.print_exc(file=open('./page_loader.log', 'a'))
+        sys.exit(1)
+
     logging.info('Finished')
 
 

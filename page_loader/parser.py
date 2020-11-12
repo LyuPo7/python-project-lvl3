@@ -33,5 +33,14 @@ def create_parser():
         help='output directory',
         metavar='output',
     )
+    parser.add_argument(
+        '-v',
+        '--verbosity',
+        type=str,
+        default='error',
+        choices=('debug', 'info', 'warning', 'error'),
+        help='increase output verbosity',
+        metavar='VERBOSITY',
+    )
 
     return parser
