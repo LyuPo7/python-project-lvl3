@@ -30,3 +30,11 @@ def download(page):
         logging.warning("The server could have problems.")
     else:
         logging.warning('Problem with request to %s', page)
+
+
+def save(page, html_text, path_html):
+    logging.info('Starting download html text.')
+    with open(path_html, 'w') as html_file:
+        logging.info('Saving %s to %s', page, path_html)
+        html_file.write(html_text)
+    logging.info('Finishing download html text.')

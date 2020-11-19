@@ -41,7 +41,6 @@ def download(page, dir_out):
     srcs.extend(extracted_html.xpath("//script/@src"))
     srcs.extend(extracted_html.xpath("//link/@href"))
     srcs_valid = [src for src in srcs if '//' not in src and '/' in src]
-    text_relinked = src.download(page, srcs_valid, text_html, path_dir_out, base_dir_out)
-    with open(path_html, 'w') as html_file:
-        logging.info('Saving %s to %s', page, path_html)
-        html_file.write(text_relinked)
+    text_relinked = src.relink(page, srcs_valid, text_html, path_dir_out, base_dir_out)
+    text.save(page, text_relinked, path_html)
+    src.download(page, srcs_valid, path_dir_out, base_dir_out)
