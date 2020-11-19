@@ -23,11 +23,10 @@ def relink(page, srcs_valid, text_html, path_dir_out, base_dir_out):
 def download(page, srcs_valid, path_dir_out, base_dir_out):
     logging.info('Starting download of sources of the page.')
     logging.debug('All sources from page to download: {}'.format(srcs_valid))
-    bar = Bar('Downloading resources', max=len(srcs_valid))
+    bar = Bar('Downloading resources', max=len(srcs_valid), suffix='%(percent).1f%% - Remaining: %(eta).1f sec')
     for link in srcs_valid:
         file_name = path.relink(link)
         path_link = os.path.join(path_dir_out, file_name)
-        full_name = os.path.join(base_dir_out, file_name)
         full_link = page + link
         logging.info('Downloading %s to %s', full_link, path_link)
         with open(path_link, 'wb') as fd:
