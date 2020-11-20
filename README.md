@@ -6,7 +6,7 @@
     <p>Page loader utility</p>
     <ul>
         <li>Downloads any html page with resources to your local machine;</li>
-        <li>Supports 4 levels of logging.</li>
+        <li>Supports 4 levels of logging (by default use 'error' value).</li>
     </ul>
 
 <h3>Installation:</h3>
@@ -21,5 +21,23 @@
             <p>Download html page to work directory</p>
             <a href="https://asciinema.org/a/374204" target="_blank"><img src="https://asciinema.org/a/374204.svg" /></a>
        </li>
-        <li>Supports 4 levels of logging.</li>
+        <li> <h4>Usage with output flag</h4>
+            <p>Download html page to directory in output flag</p>
+            <a href="https://asciinema.org/a/374207" target="_blank"><img src="https://asciinema.org/a/374207.svg" /></a>
+       </li>
+       <li> <h4>Usage with verbosity flag</h4>
+           <ul>
+                <li> <p><b>Verbosity = error/warning</b></p>
+                    <p>Show error/warning messages only if where was problems while downloading page</p>
+                </li>
+                <li> <p><b>Verbosity = info</b></p>
+                    <p>Show info messages for every step of downloading page</p>
+                    <a href="https://asciinema.org/a/374211" target="_blank"><img src="https://asciinema.org/a/374211.svg" /></a>
+                </li>
+                <li> <p><b>Verbosity = debug</b></p>
+                    <p>Show debug messages about every step of downloading page</p>
+                    <a href="https://asciinema.org/a/374212" target="_blank"><img src="https://asciinema.org/a/374212.svg" /></a>
+                </li>
+           </ul>
+       </li>
     </ul>
