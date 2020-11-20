@@ -6,15 +6,16 @@ import re
 
 # Constants
 CHANGE_SYMBOL = '-'
+MAX_LEN = 100
 
 
 def change(path):
     """Change char if itsn't valid.
     Args:
-        char(str): char to check,
+        path(str): path to check,
 
     Returns:
-        char(str): valid char.
+        char(str): valid path.
     """
     path_valid = ''
     char_regx = re.compile(r'[a-zA-Z0-9]')
@@ -50,8 +51,7 @@ def create(page):
         path_page(str): path for save page,
         path_dir(str): path of directory for save sources of the page.
     """
-    path = cut(page)
-    path_valid = change(path)
+    path_valid = change(cut(page))
     path_page = '{}.html'.format(path_valid)
     path_dir = '{}_files'.format(path_valid)
     return (path_page, path_dir)
@@ -63,11 +63,10 @@ def relink(src):
         page(str): html page,
 
     Returns:
-        src(str): name of source,
-        path_dir(str): path of directory for save sources of the page.
+        src(str): relinked source,
     """
     path, ext = os.path.splitext(src)
     path_valid = change(path)
-    if len(path_valid) > 100:
-        path_valid = path_valid[:100]
+    if len(path_valid) > MAX_LEN:
+        path_valid = path_valid[:MAX_LEN]
     return path_valid + ext

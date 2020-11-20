@@ -9,5 +9,5 @@ class PathError(Exception):
 
 
 class RequestError(Exception):
-    '''Base Exception.'''
+    '''Request Exception.'''
     pass
