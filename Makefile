@@ -5,7 +5,7 @@ test:
 	poetry run pytest -vv --ff --cov=page_loader --cov-report xml tests/tests.py 
 
 lint:
-	poetry run flake8 page_loader --show-source --ignore=E131,E722,E501 --verbose
+	poetry run flake8 page_loader --show-source --ignore=E131,E501 --verbose
 
 selfcheck:
 	poetry check
