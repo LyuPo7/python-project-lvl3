@@ -6,26 +6,33 @@
     <p>Page loader utility</p>
     <ul>
         <li>Downloads any html page with resources to your local machine;</li>
-        <li>Supports 4 levels of logging (by default use 'error' value).</li>
+        <li>Supports 4 levels of logging:
+            <ul>
+               <li>error-level (default): show only error messages;</li>
+                <li>warning-level: show only error and warning messages;</li>
+                <li>info-level: show info messages for every step of downloading page including error and warning messages;</li>
+                <li>debug-level: show even more details than info-level;</li>
+            </ul>
+        </li>
     </ul>
 
 <h3>Installation:</h3>
-    <p>for install type in command line:</p>
+    <p>Download from PyPiTest:</p>
         <p><i>python3 -m pip install --no-cache-dir --index-url https://test.pypi.org/simple --extra-index-url https://pypi.org/simple lyupo7-page_loader</i></p>
     <a href="https://asciinema.org/a/374182" target="_blank"><img src="https://asciinema.org/a/374182.svg" /></a>
 
 <h3>How to use?</h3>
     <p>Use <b>page-loader</b> command with appropriate keys.</p>
     <ul>
-        <li> <h4>Usage without flags</h4>
+        <li> <h4>Usage without keys</h4>
             <p>Download html page to work directory</p>
             <a href="https://asciinema.org/a/374204" target="_blank"><img src="https://asciinema.org/a/374204.svg" /></a>
        </li>
-        <li> <h4>Usage with output flag</h4>
-            <p>Download html page to directory in output flag</p>
+        <li> <h4>Usage with output key</h4>
+            <p>Download html page to directory in <b>output</b> key</p>
             <a href="https://asciinema.org/a/374207" target="_blank"><img src="https://asciinema.org/a/374207.svg" /></a>
        </li>
-       <li> <h4>Usage with verbosity flag</h4>
+        <li> <h4>Usage with <b>verbosity</b> key</h4>
            <ul>
                 <li> <p><b>Verbosity = error/warning</b></p>
                     <p>Show error/warning messages only if where was problems while downloading page</p>
