@@ -9,22 +9,34 @@ from page_loader import path
 from progress.bar import Bar
 
 
-def relink(page, srcs_valid, text_html, path_dir_out, base_dir_out):
+def relink(srcs, text_html, dir_out):
+    """Relink sources in HTML text.
+    Args:
+        srcs(list): sources to be relinked,
+        text_html(str): html text contained sources,
+        base_dir_out(str): directory to which relink sources.
+    """
     logging.info('Starting relink of sources of the page.')
-    for link in srcs_valid:
+    for link in srcs:
         file_name = path.relink(link)
-        full_name = os.path.join(base_dir_out, file_name)
+        full_name = os.path.join(dir_out, file_name)
         text_html = text_html.replace(link, full_name)
         logging.info('Changing %s to %s', link, full_name)
     logging.info('Finishing relink of sources of the page.')
     return text_html
 
 
-def download(page, srcs_valid, path_dir_out, base_dir_out):
+def download(page, srcs, path_dir_out):
+    """Download sources from HTML page.
+    Args:
+        page(str): HTML page,
+        srcs(list): sources to be downloaded,
+        path_dir_out(str): directory to which download sources.
+    """
     logging.info('Starting download of sources of the page.')
-    logging.debug('All sources from page to download: {}'.format(srcs_valid))
-    bar = Bar('Downloading resources', max=len(srcs_valid), suffix='%(percent).1f%% - Remaining: %(eta).1f sec')
-    for link in srcs_valid:
+    logging.debug('All sources from page to download: {}'.format(srcs))
+    bar = Bar('Downloading resources', max=len(srcs), suffix='%(percent).1f%% - Remaining time: %(eta).1f sec')
+    for link in srcs:
         file_name = path.relink(link)
         path_link = os.path.join(path_dir_out, file_name)
         full_link = page + link

@@ -10,3 +10,5 @@ VERBOSITY = {
     'warning': logging.WARNING,
     'error': logging.ERROR,
 }
+
+LOG = './page_loader.log'

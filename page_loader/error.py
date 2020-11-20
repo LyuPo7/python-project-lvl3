@@ -8,11 +8,6 @@ class PathError(Exception):
     pass
 
 
-class ConnectionError(Exception):
-    '''Connection Exception.'''
-    pass
-
-
 class RequestError(Exception):
     '''Base Exception.'''
     pass

@@ -1,18 +1,22 @@
 # This Python file uses the following encoding: utf-8
 
 """Page module."""
+import os
+import shutil
+import logging
 from lxml import html
 from page_loader import path
 from page_loader import error
 from page_loader import text
 from page_loader import src
-import os
-import shutil
-import logging
 
 
 def download(page, dir_out):
-    """Download HTML page."""
+    """Download HTML page.
+    Args:
+        page(str): page to download,
+        dir_out(str): directory to which download page.
+    """
     # Create paths for HTML page and directory for resources from HTML page
     base_name_out, base_dir_out = path.create(page)
     path_html = os.path.join(dir_out, base_name_out)
@@ -24,7 +28,7 @@ def download(page, dir_out):
         shutil.rmtree(path_dir_out)
     try:  # Check if dir entered by user exists
         os.mkdir(path_dir_out)
-        logging.info('Creating %s', path_dir_out)
+        logging.info('Creating directory: %s', path_dir_out)
     except IOError as e:  # If not exists raise exception
         logging.error("No such directory: {}".format(dir_out))
         raise error.PathError() from e
@@ -41,6 +45,6 @@ def download(page, dir_out):
     srcs.extend(extracted_html.xpath("//script/@src"))
     srcs.extend(extracted_html.xpath("//link/@href"))
     srcs_valid = [src for src in srcs if '//' not in src and '/' in src]
-    text_relinked = src.relink(page, srcs_valid, text_html, path_dir_out, base_dir_out)
+    text_relinked = src.relink(srcs_valid, text_html, base_dir_out)
     text.save(page, text_relinked, path_html)
-    src.download(page, srcs_valid, path_dir_out, base_dir_out)
+    src.download(page, srcs_valid, path_dir_out)
