@@ -11,12 +11,15 @@
 
 <h3>Installation:</h3>
     <p>for install type in command line:</p>
-        <i>python3 -m pip install --no-cache-dir --index-url https://test.pypi.org/simple --extra-index-url https://pypi.org/simple lyupo7-page_loader</i>
+        <p><i>python3 -m pip install --no-cache-dir --index-url https://test.pypi.org/simple --extra-index-url https://pypi.org/simple lyupo7-page_loader</i></p>
     <a href="https://asciinema.org/a/374182" target="_blank"><img src="https://asciinema.org/a/374182.svg" /></a>
 
 <h3>How to use?</h3>
     <p>Use <b>page-loader</b> command with appropriate keys.</p>
     <ul>
-        <li> Usage without flags</li>
+        <li> <h4>Usage without flags</h4>
+            <p>Download html page to work directory</p>
+            <a href="https://asciinema.org/a/374204" target="_blank"><img src="https://asciinema.org/a/374204.svg" /></a>
+       </li>
         <li>Supports 4 levels of logging.</li>
     </ul>
