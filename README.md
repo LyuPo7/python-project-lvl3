@@ -3,15 +3,15 @@
 <a href="https://codeclimate.com/github/LyuPo7/python-project-lvl3/maintainability"><img src="https://api.codeclimate.com/v1/badges/0f92f57e0c0e8d70281f/maintainability" /></a> <a href="https://codeclimate.com/github/LyuPo7/python-project-lvl3/test_coverage"><img src="https://api.codeclimate.com/v1/badges/0f92f57e0c0e8d70281f/test_coverage" /></a> <a href="https://travis-ci.org/LyuPo7/python-project-lvl3"><img src="https://travis-ci.org/LyuPo7/python-project-lvl3.svg?branch=main"></a> ![Python package](https://github.com/LyuPo7/python-project-lvl3/workflows/Python%20package/badge.svg)
 
 <h3>Project Description:</h3>
-    <p>Page loader utility</p>
+    <p>HTML page loader utility</p>
     <ul>
         <li>Downloads any html page with resources to your local machine;</li>
         <li>Supports 4 levels of logging:
             <ul>
-               <li>error-level (default): show only error messages;</li>
-                <li>warning-level: show only error and warning messages;</li>
-                <li>info-level: show info messages for every step of downloading page including error and warning messages;</li>
-                <li>debug-level: show even more details than info-level;</li>
+                <li><b>error</b>-level (default): show only error messages;</li>
+                <li><b>warning</b>-level: show only error and warning messages;</li>
+                <li><b>info</b>-level: show info messages for every step of downloading page including error and warning messages;</li>
+                <li><b>debug</b>-level: show even more details than info-level;</li>
             </ul>
         </li>
     </ul>
