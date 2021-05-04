@@ -1,8 +1,9 @@
 # This Python file uses the following encoding: utf-8
 
 """Paths module."""
-import os.path
 import re
+import os.path
+from urllib.parse import urlparse
 
 # Constants
 CHANGE_SYMBOL = '-'
@@ -27,21 +28,6 @@ def change(path):
     return path_valid
 
 
-def cut(link):
-    """Cut schema from the link.
-    Args:
-        link(str): link,
-
-    Returns:
-        link(str): link without schema.
-    """
-    domain_regx = re.compile(r'(https:\/\/)(\S*)')
-    domain = domain_regx.search(link)
-    if domain:
-        return domain.group(2)
-    return link
-
-
 def create(page):
     """Create name for html page and name for directory of sources of html page.
     Args:
@@ -51,7 +37,13 @@ def create(page):
         path_page(str): path for save page,
         path_dir(str): path of directory for save sources of the page.
     """
-    path_valid = change(cut(page))
+    page_wo_schema = urlparse(page)
+    path_path, path_ext = os.path.splitext(page_wo_schema.path)
+    path_valid = change("{}{}".format(
+            page_wo_schema.netloc,
+            path_path,
+        ),
+    )
     path_page = '{}.html'.format(path_valid)
     path_dir = '{}_files'.format(path_valid)
     return (path_page, path_dir)

@@ -3,11 +3,6 @@
 """Errors module."""
 
 
-class PathError(Exception):
-    '''Path Exception.'''
-    pass
-
-
-class RequestError(Exception):
-    '''Request Exception.'''
+class Error(Exception):
+    '''Error Exception.'''
     pass

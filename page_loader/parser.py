@@ -2,6 +2,7 @@
 
 """Parser of project."""
 import argparse
+import page_loader
 
 
 def create_parser():
@@ -12,12 +13,11 @@ def create_parser():
     """
     parser = argparse.ArgumentParser(
         prog='page-loader',
-		description="""Description:
-            The program downloads HTML pages.""",
-		epilog="""(c) October 2020.
-            The developer isn't responsible for any problems
-            which might result from work of this program.
-            """,
+        description='Description:The program downloads '
+                    'HTML pages.',
+        epilog='(c) October 2020. '
+               "The developer isn't responsible for any problems "
+               "which might result from work of this program.",
     )
     parser.add_argument(
         'page',
@@ -38,7 +38,7 @@ def create_parser():
         '--verbosity',
         type=str,
         default='error',
-        choices=('debug', 'info', 'warning', 'error'),
+        choices=page_loader.VERBOSITY.keys(),
         help='increase output verbosity',
         metavar='VERBOSITY',
     )

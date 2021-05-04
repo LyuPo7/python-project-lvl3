@@ -2,39 +2,76 @@
 
 """Html module."""
 import requests
-import requests.status_codes as rsc
+from lxml import html
 import logging
+import os.path
 from page_loader import error
+from page_loader import src
 
 
-def download(page):
+def get(page):
+    """Get request of page.
+    Args:
+        page(str): page to download,
+
+    Returns:
+        : request of the page.
+    """
     try:
         res = requests.get(page)
-        res_response = res.status_code
-    except requests.exceptions.ConnectionError as e:
-        logging.error("Name or service not known: {}.".format(page))
-        raise error.RequestError() from e
-    except (requests.exceptions.MissingSchema, requests.exceptions.InvalidSchema) as e:
-        logging.error("Invalid URL: {}.".format(page))
-        raise error.RequestError() from e
-    if res_response == rsc.codes.OK:
-        return res
-    elif res_response == rsc.codes.NOT_FOUND:  # 404
-        logging.error('Server not found. Check your request: {}.'.format(page))
-        raise error.RequestError()
-    elif res_response == rsc.codes.TIMEOUT:  # 408
-        logging.warning("The request wan't within the time that the server was prepared to wait.")
-    elif res_response == rsc.codes.BAD:  # 400
-        logging.warning("The request could not be understood by the server due to malformed syntax.")
-    elif res_response == rsc.codes.GATEWAY_TIMEOUT:  # 504
-        logging.warning("The server could have problems.")
+        res.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        logging.error(e.__doc__)
+        raise error.Error() from e
     else:
-        logging.warning('Problem with request to %s', page)
+        return res
+
+
+def extract(page):
+    """Get HTML text of page.
+    Args:
+        page(str): page to download,
+
+    Returns:
+        : text of html page,
+        : extracted html page.
+    """
+    res = get(page)
+    return (res.text, html.fromstring(res.content))
 
 
 def save(page, html_text, path_html):
+    """Save HTML text of page to local HTML file.
+    Args:
+        page(str): page to download,
+
+    Returns:
+        html_text(str): text of html page,
+        path_html(str): path for saving html page.
+    """
     logging.info('Starting download html text.')
     with open(path_html, 'w') as html_file:
         logging.info('Saving %s to %s', page, path_html)
         html_file.write(html_text)
     logging.info('Finishing download html text.')
+
+
+def relink(page, srcs_downloaded, text_html, srcs_dir, dir_out, html_name):
+    """Relink every src in HTML file.
+    Args:
+        page(str): page to download,
+        srcs_downloaded(list): all downloaded srcs,
+        text_html(str): text of html page,
+        srcs_dir(str): directory of downloaded srcs,
+        dir_out(str): directory for html downloading,
+        html_name(str): name for html file,
+
+    Returns:
+        html_text(str): text of html page,
+        path_html(str): path for saving html page.
+    """
+    path_html = os.path.join(dir_out, html_name)
+    text_relinked = src.relink(srcs_downloaded, text_html, srcs_dir)
+    save(page, text_relinked, path_html)
+    logging.info('Name of HTML file: %s', html_name)
+    logging.debug('Path to HTML file: %s', path_html)

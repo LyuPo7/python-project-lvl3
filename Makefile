@@ -2,10 +2,10 @@ install:
 	poetry install
 
 test:
-	poetry run pytest -vv --ff --cov=page_loader --cov-report xml tests/tests.py 
+	poetry run pytest -vv --ff --cov=page_loader --cov-report xml tests/*
 
 lint:
-	poetry run flake8 page_loader --show-source --ignore=E131,E501 --verbose
+	poetry run flake8 page_loader --show-source --verbose
 
 selfcheck:
 	poetry check

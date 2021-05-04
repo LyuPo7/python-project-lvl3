@@ -1,0 +1,433 @@
+* {
+    vertical-align: baseline;
+    font-weight: inherit;
+    font-family: inherit;
+    font-style: inherit;
+    color: inherit;
+    outline: none;
+    text-decoration:inherit;
+    font-size: 100%;
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+:focus {
+    outline: 0;
+}
+
+::-moz-focus-inner {
+    border: 0;
+}
+
+b, strong{
+  font-weight: bold;
+}
+
+em{
+  font-style: italic;
+}
+
+i{
+  display: inline-block;
+  vertical-align: bottom;
+  margin-bottom: 2px;
+}
+
+/* === Header === */
+
+html {
+    height: 100%;
+}
+
+body{
+  font-family: 'Source Sans Pro', 'Verdana', sans-serif;
+  background-color: white;
+  padding: 0 0;
+  margin: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: 350px;
+}
+
+header{
+  background-color: #3a6183;
+  background: url("../header-bg.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  padding: 10px;
+  text-align: right;
+}
+
+header .in{
+  margin: 0 auto;
+  color: white;
+}
+
+header a,
+header a:hover{
+  color: inherit;
+}
+
+#logo{
+  position: absolute;
+  font-size: 60px;
+  top: 6px;
+}
+
+div.sub{
+  font-weight: 400;
+}
+
+#title{
+  font-weight: 300;
+  font-size: 270%;
+  color: white;
+}
+#title span{
+  font-weight: normal;
+}
+
+/* Layout */
+
+#container {
+    flex-grow: 1;
+    margin: 0 10px;
+    background: url("../main-bg.jpg") no-repeat 50% 70% fixed;
+    background-size: 100%;
+}
+
+header .in,
+#content{
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+footer{
+  background: #555;
+  color: white;
+  padding: 0.6em 1em;
+  line-height: 1.3em;
+  text-align: center;
+  margin-top: 10px;
+}
+
+footer .about{
+  display: block;
+  font-weight: bold;
+}
+footer i{
+  font-size: 90%;
+  margin-bottom: 3px;
+  margin-left: 3px;
+}
+
+#content{
+  margin-top: 10px;
+}
+/* Main Body Styles */
+a:hover{
+  color: #48a0dc;
+}
+
+h1{
+  font-size: 200%;
+  font-weight: lighter;
+  color: #2D76A8;
+}
+
+/* Listing Styles */
+
+.job a:hover {
+  text-decoration: underline;
+}
+
+section.job_list i{
+  vertical-align: bottom;
+  margin-bottom: 2px;
+  display: inline-block;
+  color: #666;
+  margin-right: 0.3em;
+}
+
+section.job_list .job{
+  margin: 10px 0;
+  background: white;
+  padding: 10px 15px;
+  border: solid #ddd 1px;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+.hidden{
+  display: none;
+}
+
+section.job_list .info{
+  margin-right: 15px;
+  color: #777;
+  white-space: nowrap;
+}
+
+section.job_list .job h1{
+  font-size: 130%;
+  font-weight: normal;
+  margin-bottom: 0.1em;
+}
+
+section.job_list .go_button{
+  display: block;
+  float: right;
+  background: #3a6183;
+  color: white;
+  margin: -10px -16px 3px 3px;
+  padding: 6px 10px;
+  /*box-shadow: 1px 1px 3px #aaa;*/
+  transition: background-color 0.3s;
+}
+
+section.job_list .go_button i{
+  color: inherit;
+  margin-left: 3px;
+  margin-right: 0;
+}
+
+section.job_list .go_button:hover{
+  background: #12496E;
+  text-decoration: none;
+}
+
+section.job_list p{
+  color: black;
+  font-weight: lighter;
+  font-size: 95%;
+  margin-top: 1em;
+}
+
+
+/* Job Ad Styles */
+nav.main{
+  color: #666;
+  text-align: right;
+}
+nav.main i{
+  display: inline-block;
+  vertical-align: bottom;
+  margin-bottom: 2px;
+}
+nav.main a{
+  margin-left: 15px;
+}
+
+article.job{
+  padding: 0 5px 5px 20px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+article.job h1{
+  margin-top: 20px;
+}
+article.job ul,
+article.job ol{
+  margin-left: 1.5em;
+}
+
+article.job .head{
+  color: #888;
+  margin-bottom: 15px;
+}
+article.job .head span{
+  color: black;
+  margin: 5px;
+}
+
+article.job .tags ul,
+article.job .tags li{
+  list-style: none;
+  margin: 0;
+  display: inline-block;
+}
+
+article.job .head .tag{
+  display: inline-block;
+  color: white;
+  background: #888;
+  padding: 1px 5px;
+  border-radius: 3px;
+  line-height: 1.2em;
+}
+article.job h2{
+  font-weight: bold;
+  font-size: 120%;
+  margin-top: 20px;
+}
+article.job h3{
+  font-weight: bold;
+  margin-top: 20px;
+}
+article.job hr{
+  margin: 20px;
+}
+article.job p{
+  margin-top: 7px;
+
+}
+
+article.job .contact{
+  color: #666;
+  font-weight: lighter;
+}
+article.job .contact span{
+  font-weight: normal;
+  color: black;
+  margin-left: 5px;
+}
+
+#map-el h1{
+  font-weight: normal;
+  font-size: 130%;
+}
+
+#map-el hr{
+  border-bottom: 1px solid #2D76A8;
+  margin: 10px 0;
+}
+
+#filter {
+    position: relative;
+    display: none;
+
+    background-color: #48a0dc;
+    padding: 10px 30px;
+    color: white;
+    text-align: left;
+}
+
+#filter .close {
+    position: absolute;
+    vertical-align: top;
+    top: 8px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#filter ul {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+
+    margin: 1em 0;
+    padding: 0;
+}
+
+#filter h3 {
+    font-weight: lighter;
+    font-size: 200%;
+}
+
+#filter li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#selected-tags a,
+#filter a {
+    margin: 0;
+}
+
+#filter a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+#selected-tags {
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+#selected-tags b {
+    background-color: #48a0dc;
+    color: white;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    margin-left: 3px;
+    font-weight: normal;
+}
+
+#selected-tags b span {
+    margin-left: 4px;
+    cursor: pointer;
+}
+
+#text_search_container{
+  border: 1px solid #999;
+  padding: 0 4px;
+  border-radius: 2px;
+}
+#text_search{
+  background: white;
+  border: none;
+}
+
+#search_info{
+  background: #48a0dc;
+  text-align: center;
+  padding: 3px;
+  color: white;
+  font-weight: bold;
+}
+
+.search_match {
+  color: #888;
+}
+.search_match .match{
+  color: black;
+  background: yellow;
+}
+
+.search_match .sep{
+  margin: 10px;
+}
+
+.job.has_match .detail{
+  display: none;
+}
+
+
+@media (max-width: 630px){
+    #title {
+        font-size: 200%;
+    }
+
+    #logo {
+        top: -3px;
+    }
+}
+
+@media (max-width: 470px) {
+  #title span{
+    display: block;
+  }
+  #logo{
+    top: 15px;
+  }
+  section.job_list .job h1{
+    font-size: 110%;
+    min-height: 32px;
+  }
+  section.job_list .job .go_button{
+    padding: 3px 5px;
+  }
+}

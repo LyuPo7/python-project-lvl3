@@ -2,13 +2,27 @@
 
 """Page module."""
 import os
-import shutil
-import logging
-from lxml import html
 from page_loader import path
-from page_loader import error
 from page_loader import text
 from page_loader import src
+
+
+def find_srcs(page, extracted_html, abs_path_2_src_dir):
+    """Download srcs from the page to srcs dir.
+    Args:
+        page(str): page with src to download,
+        extracted_html(srt): extracted html page,
+        abs_path_2_src_dir(str): name of directory for saving html,
+
+    Returns:
+        srcs_downloaded(list): list of downloaded srcs.
+    """
+    srcs = extracted_html.xpath("//image/@src")
+    srcs.extend(extracted_html.xpath("//script/@src"))
+    srcs.extend(extracted_html.xpath("//link/@href"))
+    srcs_downloaded = [src for src in srcs if '//' not in src and '/' in src]
+    src.download(page, srcs_downloaded, abs_path_2_src_dir)
+    return srcs_downloaded
 
 
 def download(page, dir_out):
@@ -17,34 +31,21 @@ def download(page, dir_out):
         page(str): page to download,
         dir_out(str): directory to which download page.
     """
-    # Create paths for HTML page and directory for resources from HTML page
-    base_name_out, base_dir_out = path.create(page)
-    path_html = os.path.join(dir_out, base_name_out)
-    path_dir_out = os.path.join(dir_out, base_dir_out)
-    # Remove directory for resources from HTML page if already exists
-    if os.path.exists(path_dir_out):
-        logging.debug('Directory %s already exists.', path_dir_out)
-        logging.debug('Removing %s.', path_dir_out)
-        shutil.rmtree(path_dir_out)
-    try:  # Check if dir entered by user exists
-        os.mkdir(path_dir_out)
-        logging.info('Creating directory: %s', path_dir_out)
-    except IOError as e:  # If not exists raise exception
-        logging.error("No such directory: {}".format(dir_out))
-        raise error.PathError() from e
-    logging.info('Name of HTML file: %s', base_name_out)
-    logging.debug('Name of directory for sources saving: %s', path_dir_out)
-    logging.debug('Path to HTML file: %s', path_html)
-    logging.debug('Path to source directory: %s', path_dir_out)
-    # Make request
-    res = text.download(page)
-    text_html = res.text
-    # Save src anf href to list
-    extracted_html = html.fromstring(res.content)
-    srcs = extracted_html.xpath("//image/@src")
-    srcs.extend(extracted_html.xpath("//script/@src"))
-    srcs.extend(extracted_html.xpath("//link/@href"))
-    srcs_valid = [src for src in srcs if '//' not in src and '/' in src]
-    text_relinked = src.relink(srcs_valid, text_html, base_dir_out)
-    text.save(page, text_relinked, path_html)
-    src.download(page, srcs_valid, path_dir_out)
+    # Paths and names for html file and directory for srcs
+    html_name, srcs_dir = path.create(page)
+    abs_path_2_src_dir = os.path.join(dir_out, srcs_dir)
+    # Create srcs dir
+    src.create_dir(abs_path_2_src_dir, dir_out)
+    # Get html text
+    text_html, extracted_html = text.extract(page)
+    # Download srcs
+    srcs_downloaded = find_srcs(page, extracted_html, abs_path_2_src_dir)
+    # Relink and download html text
+    text.relink(
+        page,
+        srcs_downloaded,
+        text_html,
+        srcs_dir,
+        dir_out,
+        html_name,
+    )
